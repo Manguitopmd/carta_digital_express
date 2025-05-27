@@ -1,0 +1,441 @@
+@import url('variables.css');
+
+body {
+    background-color: var(--beige);
+    color: var(--text-primary);
+    font-family: 'Montserrat', 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Utility Classes */
+.bg-navBackground { background-color: var(--nav-background); }
+.bg-beige { background-color: var(--beige); }
+.bg-button { background-color: var(--button); }
+.bg-white { background-color: var(--white); }
+.bg-darkCard { background-color: var(--dark-card); }
+.bg-accent { background-color: var(--accent); }
+.bg-green { background-color: var(--green); }
+.bg-orange { background-color: var(--orange); }
+.bg-blue { background-color: var(--blue); }
+.text-mustard { color: var(--mustard); }
+.text-color { color: var(--beige); }
+.text-white { color: var(--white); }
+.text-black { color: var(--black); }
+.text-primary { color: var(--text-primary); }
+.text-secondary sixcolor: var(--text-secondary); }
+.border { border: var(--border); }
+.border-mustard { border-color: var(--mustard); }
+.shadow { box-shadow: var(--shadow); }
+
+/* Social Media Icons */
+.social-icon {
+    width: 48px;
+    height: 48px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+/* App Container */
+.app-container {
+    max-width: 640px;
+    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.content {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 1rem;
+}
+
+/* Tab Bar */
+.tab-bar {
+    background-color: var(--dark-card);
+    border-top: var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 0.75rem 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.tab-bar button {
+    flex: 1;
+    padding: 0.5rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.3s ease;
+}
+
+.tab-bar button.active {
+    color: var(--mustard);
+}
+
+.tab-bar i {
+    font-size: 1.4rem;
+}
+
+/* Agency Credit */
+.agency-credit {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.agency-link {
+    color: var(--text-secondary);
+    text-decoration: underline;
+}
+
+/* Agency Modal */
+#agency-modal {
+    transition: opacity 0.3s ease;
+}
+
+#agency-modal.show {
+    opacity: 1;
+}
+
+#agency-modal .card {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+#agency-modal.show .card {
+    transform: scale(1);
+}
+
+.agency-logo-container {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+#agency-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.agency-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 1.75rem;
+    background-color: var(--beige);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.contact-icons, .social-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 64px;
+}
+
+/* Swiper */
+.swiper {
+    width: 100%;
+    height: 180px;
+}
+
+.swiper-slide {
+    background: var(--dark-card);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper-slide .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.swiper-pagination-bullet {
+    background: var(--white);
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--mustard);
+}
+
+/* Category Bar */
+.category-bar {
+    -webkit-overflow-scrolling: touch;
+}
+
+.category-bar button {
+    transition: all 0.3s ease;
+}
+
+.category-bar button.active-category {
+    background-color: var(--accent) !important;
+    color: var(--white) !important;
+    border-color: var(--accent) !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 8px rgba(255, 77, 77, 0.5);
+}
+
+/* Menu Items */
+.item {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.item h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--mustard);
+    margin-bottom: 0.5rem;
+}
+
+.item .price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent);
+    background-color: rgba(255, 77, 77, 0.1);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 0.5rem 0;
+}
+
+.item p.text-secondary {
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.combo-item {
+    background-color: rgba(255, 77, 77, 0.1);
+    border: 2px solid var(--accent);
+}
+
+/* Notification Modal */
+#notification-modal .card {
+    max-width: 320px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Cards */
+.card {
+    background-color: var(--dark-card);
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
+}
+
+/* Buttons */
+.btn {
+    background-color: var(--button);
+    color: var(--black);
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-accent {
+    background-color: var(--accent);
+    color: var(--white);
+}
+
+/* Inputs */
+input, select, textarea {
+    border: var(--border);
+    border-radius: 8px;
+    padding: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    background-color: var(--gray-dark);
+    color: var(--black);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Reservation Modal */
+#reserve-modal .card {
+    max-width: 360px;
+}
+
+#reserve-date, #reserve-time, #reserve-persons, #reserve-name, #reserve-phone, #reserve-notes {
+    background-color: var(--gray-dark);
+    color: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+
+#reserve-date::-webkit-calendar-picker-indicator {
+    filter: invert(70%) sepia(100%) saturate(1000%) hue-rotate(360deg);
+}
+
+#reserve-time {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='%23FFAB00' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1rem;
+}
+
+/* Business Hours */
+#business-hours p {
+    margin: 0.25rem 0;
+}
+
+/* Leaflet Map */
+#map {
+    height: 250px;
+    width: 100%;
+    border-radius: 8px;
+    filter: grayscale(20%);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+    .icon-wrapper { width: 56px; }
+    .agency-icon { width: 48px; height: 48px; font-size: 1.5rem; }
+    .social-icon { width: 40px; height: 40px; }
+    .social-icon i { font-size: 1.25rem; }
+    .content {
+        padding: 0.75rem;
+        padding-bottom: 5rem;
+    }
+
+    .tab-bar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        max-width: 640px;
+        z-index: 50;
+        padding: 0.5rem 0;
+    }
+
+    .tab-bar button {
+        font-size: 0.75rem;
+    }
+
+    .tab-bar i {
+        font-size: 1.2rem;
+    }
+
+    .swiper {
+        height: 160px;
+    }
+
+    .card {
+        padding: 1rem;
+    }
+
+    .btn {
+        padding: 0.65rem 1.25rem;
+    }
+
+    .category-bar {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .category-bar button {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .agency-credit {
+        margin-bottom: 5rem;
+    }
+
+    .item {
+        padding: 1rem;
+    }
+
+    .item h3 {
+        font-size: 1.1rem;
+    }
+
+    .item .price {
+        font-size: 1.1rem;
+    }
+
+    .item p.text-secondary {
+        font-size: 0.85rem;
+    }
+
+    #reserve-modal .card {
+        max-width: 320px;
+    }
+
+    #notification-modal .card {
+        max-width: 280px;
+    }
+
+    #agency-modal .card {
+        max-width: 320px;
+    }
+
+    .agency-logo-container {
+        width: 80px;
+        height: 80px;
+    }
+
+    .agency-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+}

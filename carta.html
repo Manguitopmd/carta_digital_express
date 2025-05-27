@@ -1,0 +1,112 @@
+<section class="animate-fadeIn">
+    <!-- Category Filters -->
+    <div class="category-bar sticky top-0 bg-darkCard z-10 py-3 px-4 shadow mb-4">
+        <div class="flex overflow-x-auto space-x-2 scrollbar-hidden">
+            <button data-category="all" class="btn bg-button text-white px-4 py-2 rounded-full whitespace-nowrap active-category">Todos</button>
+            <button data-category="ceviches" class="btn bg-darkCard border border-mustard text-white px-4 py-2 rounded-full whitespace-nowrap">Ceviches</button>
+            <button data-category="fuentes" class="btn bg-darkCard border border-mustard text-white px-4 py-2 rounded-full whitespace-nowrap">Fuentes</button>
+            <button data-category="entradas" class="btn bg-darkCard border border-mustard text-white px-4 py-2 rounded-full whitespace-nowrap">Entradas</button>
+            <button data-category="guarniciones" class="btn bg-darkCard border border-mustard text-white px-4 py-2 rounded-full whitespace-nowrap">Guarniciones</button>
+            <button data-category="bebidas" class="btn bg-darkCard border border-mustard text-white px-4 py-2 rounded-full whitespace-nowrap">Bebidas</button>
+        </div>
+    </div>
+
+    <!-- Menu Items -->
+    <div id="menu-items" class="space-y-4">
+        <!-- Ceviches -->
+        <div class="item card bg-darkCard p-4 relative" data-category="ceviches">
+            <img src="assets/img/carta/ceviche_clasico.jpg" alt="Ceviche Clásico" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Ceviche Clásico</h3>
+            <p class="price text-white/80">{{currency}}25.00</p>
+            <p class="text-sm text-secondary">Pescado fresco, limón, ají limo y cebolla roja, servido con canchita</p>
+        </div>
+        <div class="item card bg-darkCard p-4 relative" data-category="ceviches">
+            <img src="assets/img/carta/ceviche_mixto.jpg" alt="Ceviche Mixto" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Ceviche Mixto</h3>
+            <p class="price text-white/80">{{currency}}30.00</p>
+            <p class="text-sm text-secondary">Pescado, pulpo y camarones con limón, culantro y ají</p>
+        </div>
+        <div class="item card bg-darkCard p-4 relative" data-category="ceviches">
+            <img src="assets/img/carta/ceviche_conchas.jpg" alt="Ceviche de Conchas Negras" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Ceviche de Conchas Negras</h3>
+            <p class="price text-white/80">{{currency}}35.00</p>
+            <p class="text-sm text-secondary">Conchas negras frescas con limón, ají y cebolla morada</p>
+        </div>
+        <!-- Fuentes -->
+        <div class="item card bg-darkCard p-4 relative" data-category="fuentes">
+            <img src="assets/img/carta/jalea_mixta.jpg" alt="Jalea Mixta" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Jalea Mixta</h3>
+            <p class="price text-white/80">{{currency}}45.00</p>
+            <p class="text-sm text-secondary">Pescado, calamares y camarones fritos, con yuca y salsa criolla</p>
+        </div>
+        <div class="item card bg-darkCard p-4 relative" data-category="fuentes">
+            <img src="assets/img/carta/arroz_mariscos.jpg" alt="Arroz con Mariscos" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Arroz con Mariscos</h3>
+            <p class="price text-white/80">{{currency}}40.00</p>
+            <p class="text-sm text-secondary">Arroz meloso con camarones, pulpo y calamares, sazonado al estilo piurano</p>
+        </div>
+        <div class="item card bg-darkCard p-4 relative" data-category="fuentes">
+            <img src="assets/img/carta/chicharrones_pescado.jpg" alt="Chicharrones de Pescado" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Chicharrones de Pescado</h3>
+            <p class="price text-white/80">{{currency}}38.00</p>
+            <p class="text-sm text-secondary">Trozos de pescado frito, servidos con camote y salsa tártara</p>
+        </div>
+        <!-- Entradas -->
+        <div class="item card bg-darkCard p-4 relative" data-category="entradas">
+            <img src="assets/img/carta/causa_cangrejo.jpg" alt="Causa de Pulpa de Cangrejo" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Causa de Pulpa de Cangrejo</h3>
+            <p class="price text-white/80">{{currency}}20.00</p>
+            <p class="text-sm text-secondary">Causa limeña rellena de pulpa de cangrejo, con palta y mayonesa</p>
+        </div>
+        <div class="item card bg-darkCard p-4 relative" data-category="entradas">
+            <img src="assets/img/carta/choritos_chalaca.jpg" alt="Choritos a la Chalaca" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Choritos a la Chalaca</h3>
+            <p class="price text-white/80">{{currency}}18.00</p>
+            <p class="text-sm text-secondary">Mejillones frescos con salsa criolla de cebolla, tomate y limón</p>
+        </div>
+        <div class="item card bg-darkCard p-4 relative" data-category="entradas">
+            <img src="assets/img/carta/tequenos_pescado.jpg" alt="Tequeños de Pescado" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Tequeños de Pescado</h3>
+            <p class="price text-white/80">{{currency}}15.00</p>
+            <p class="text-sm text-secondary">Tequeños rellenos de pescado, servidos con salsa de huacatay</p>
+        </div>
+        <!-- Guarniciones -->
+        <div class="item card bg-darkCard p-4 relative" data-category="guarniciones">
+            <img src="assets/img/carta/canchita_tostada.jpg" alt="Canchita Tostada" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Canchita Tostada</h3>
+            <p class="price text-white/80">{{currency}}5.00</p>
+            <p class="text-sm text-secondary">Maíz tostado crujiente, ideal para acompañar ceviches</p>
+        </div>
+        <div class="item card bg-darkCard p-4 relative" data-category="guarniciones">
+            <img src="assets/img/carta/camote_frito.jpg" alt="Camote Frito" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Camote Frito</h3>
+            <p class="price text-white/80">{{currency}}6.00</p>
+            <p class="text-sm text-secondary">Rodajas de camote frito, dulces y crujientes</p>
+        </div>
+        <div class="item card bg-darkCard p-4 relative" data-category="guarniciones">
+            <img src="assets/img/carta/ensalada_criolla.jpg" alt="Ensalada Criolla" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Ensalada Criolla</h3>
+            <p class="price text-white/80">{{currency}}7.00</p>
+            <p class="text-sm text-secondary">Cebolla, tomate y ají en vinagreta de limón</p>
+        </div>
+        <!-- Bebidas -->
+        <div class="item card bg-darkCard p-4 relative" data-category="bebidas">
+            <img src="assets/img/carta/chicha_morada.jpg" alt="Chicha Morada" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Chicha Morada 500ml</h3>
+            <p class="price text-white/80">{{currency}}5.00</p>
+            <p class="text-sm text-secondary">Refrescante bebida tradicional de maíz morado</p>
+        </div>
+        <div class="item card bg-darkCard p-4 relative" data-category="bebidas">
+            <img src="assets/img/carta/inka_kola.jpg" alt="Inka Kola" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Inka Kola 500ml</h3>
+            <p class="price text-white/80">{{currency}}4.50</p>
+            <p class="text-sm text-secondary">Clásica bebida peruana, dulce y refrescante</p>
+        </div>
+        <div class="item card bg-darkCard p-4 relative" data-category="bebidas">
+            <img src="assets/img/carta/cerveza_cusquena.jpg" alt="Cerveza Cusqueña" class="w-full h-40 object-cover rounded-lg mb-3">
+            <h3 class="text-lg font-bold text-mustard">Cerveza Cusqueña 330ml</h3>
+            <p class="price text-white/80">{{currency}}8.00</p>
+            <p class="text-sm text-secondary">Cerveza peruana premium, ideal para acompañar</p>
+        </div>
+    </div>
+</section>
