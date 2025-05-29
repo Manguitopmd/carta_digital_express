@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Carta Digital para Restaurante - Manguito Publicidad. Link, QR y app para tu restaurante. ¡Plan Express a S/99.90 por promoción!">
+    <meta name="keywords" content="carta digital, menú digital, restaurante, pedidos WhatsApp, QR restaurante, Perú">
+    <title>Carta Digital - Manguito Publicidad 📲</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        :root {
+            --primary: #facc15;
+            --secondary: #f97316;
+            --dark-bg: #1f2937;
+            --light-bg: #2d3748;
+            --text-light: #ffffff;
+            --whatsapp: #25D366;
+            --restaurante: #ef4444;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-bg), var(--light-bg));
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1.25rem;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .animate-fade-in { animation: fadeIn 0.8s ease forwards; }
+
+        .header {
+            background: rgba(31, 41, 55, 0.9);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1.25rem;
+            text-align: center;
+            border: 1px solid var(--primary);
+        }
+
+        .header img {
+            transition: transform 0.3s ease;
+        }
+
+        .header img:hover {
+            transform: scale(1.1);
+        }
+
+        .video-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        .accordion-item {
+            background: rgba(31, 41, 55, 0.9);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(31, 41, 55, 0.9);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 1rem;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 600px;
+            padding: 1rem;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .price-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .price-highlight {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .original-price {
+            font-size: 0.75rem;
+            text-decoration: line-through;
+            color: rgba(156, 163, 175, 0.6);
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: #1f2937;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+            width: 100%;
+            text-align: center;
+            font-size: 0.875rem;
+            min-height: 48px;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+        }
+
+        .btn-demo {
+            color: white;
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            width: 100%;
+            text-align: center;
+            font-size: 0.875rem;
+            min-height: 48px;
+        }
+
+        .btn-demo:hover {
+            transform: scale(1.02);
+        }
+
+        .demo-restaurante { background: var(--restaurante); }
+
+        .btn-back {
+            background: #6b7280;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+            width: 100%;
+            text-align: center;
+            font-size: 0.875rem;
+            min-height: 48px;
+        }
+
+        .btn-back:hover {
+            transform: scale(1.02);
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-content {
+            background: rgba(31, 41, 55, 0.9);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 1.25rem;
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .step-navigation {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .qr-image {
+            max-width: 280px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--primary);
+            margin: 1rem auto;
+            display: block;
+            text-align: center;
+        }
+
+        .qr-image:hover {
+            transform: scale(1.02);
+        }
+
+        .qr-fallback {
+            text-align: center;
+            font-size: 0.875rem;
+            color: rgba(156, 163, 175, 0.8);
+        }
+
+        .promo-text {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        footer {
+            margin-top: 1.25rem;
+            padding-bottom: 1.25rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.75rem;
+        }
+
+        .chat-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--whatsapp);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .chat-float:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-bubble-float {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--whatsapp);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        .chat-modal-content {
+            background: #f0f0f0;
+            border-radius: 12px;
+            padding: 0;
+            width: 90%;
+            max-width: 360px;
+            max-height: 70vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chat-header {
+            background: var(--whatsapp);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chat-status {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .chat-body {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 55vh;
+            overflow-y: auto;
+        }
+
+        .chat-bubble {
+            max-width: 80%;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+
+        .chat-bubble.bot {
+            background: #e5f9e3;
+            color: #1f2937;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-bubble.user {
+            background: white;
+            color: #1f2937;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .chat-option {
+            background: #3b82f6;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background 0.3s ease;
+        }
+
+        .chat-option:hover {
+            background: #2563eb;
+        }
+
+        .chat-option.acquire-plan {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: #1f2937;
+        }
+
+        .chat-option.acquire-plan:hover {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 0.25rem;
+            padding: 0.5rem;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+        }
+
+        .demo-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        .cart-table th, .cart-table td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(156, 163, 175, 0.2);
+            font-size: 0.875rem;
+        }
+
+        .cart-table th {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .cart-empty {
+            text-align: center;
+            font-style: italic;
+            opacity: 0.8;
+            font-size: 0.875rem;
+        }
+
+        @media (min-width: 640px) {
+            .container {
+                max-width: 600px;
+                padding: 1.5rem;
+            }
+
+            .button-group, .demo-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary, .btn-demo, .btn-back {
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header animate-fade-in">
+            <img src="logo.jpg" alt="Logo de Manguito Publicidad" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-[var(--primary)]/50" loading="lazy">
+            <h1 class="text-xl font-bold text-[var(--primary)]">📲 Carta Digital para Restaurante</h1>
+            <p class="text-sm mt-1 opacity-90">Tu menú digital fácil y rápido 😊</p>
+            <p class="text-sm mb-2">Digitaliza tu restaurante con link, QR y app 📱. ¡Plan Express a S/99.90 por promoción! 💸</p>
+            <p class="promo-text text-sm">Aprovecha el descuento, solo hasta el 30 de abril 2025 🎉</p>
+        </div>
+
+        <!-- Video -->
+        <section class="video-section animate-fade-in">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/7xSyl9jRpzc?enablejsapi=1&controls=0&rel=0&showinfo=0" frameborder="0" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- Carta Digital Express Plan -->
+        <div class="accordion-item animate-fade-in">
+            <div class="accordion-header">
+                <div class="price-container">
+                    <h3 class="text-base font-semibold text-[var(--primary)]">Carta Digital Express 📱</h3>
+                    <p class="text-xs opacity-80 mb-1">Ideal para empezar rápido 😎</p>
+                    <p class="price-highlight">S/ 99.90 <span class="text-xs">(pago único)</span></p>
+                    <p><span class="original-price">S/ 250</span></p>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="accordion-content">
+                <p class="text-sm mb-2">Tu carta digital completa, rápida y sin complicaciones. Ideal para digitalizar tu restaurante en solo 48 horas.</p>
+                <h4 class="text-sm font-semibold mb-1 text-[var(--primary)]">Incluye</h4>
+                <ul class="benefits-list mb-2">
+                    <li>📸 Fotos, precios y descripciones claras</li>
+                    <li>📅 Reservas en línea integradas</li>
+                    <li>🌟 Bienvenida personalizada (slider, botones, mapa)</li>
+                    <li>🔗 Link y código QR personalizados</li>
+                    <li>🚀 Entrega en 48 horas</li>
+                </ul>
+                <div class="button-group">
+                    <a href="https://goo.su/cZ3GxkE" target="_blank" class="btn-demo demo-restaurante">👀 Ver Demo Express</a>
+                    <button class="btn-primary acquire-plan" data-item="Carta Digital Express" data-price="99.90">Adquirir Carta Express 🎉</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carta Digital Pro Plan -->
+        <div class="accordion-item animate-fade-in">
+            <div class="accordion-header">
+                <div class="price-container">
+                    <h3 class="text-base font-semibold text-[var(--primary)]">Carta Digital Pro 🍽️</h3>
+                    <p class="text-xs opacity-80 mb-1">Perfecto para delivery y más 😎</p>
+                    <p class="price-highlight">S/ 199.90 <span class="text-xs">(pago único)</span></p>
+                    <p><span class="original-price">S/ 350</span></p>
+                </div>
+                <i class="fas fa-chevron-down toggle-icon"></i>
+            </div>
+            <div class="accordion-content">
+                <p class="text-sm mb-2">Todo lo del Plan Express, más funciones avanzadas para llevar tu restaurante al siguiente nivel.</p>
+                <h4 class="text-sm font-semibold mb-1 text-[var(--primary)]">Incluye</h4>
+                <ul class="benefits-list mb-2">
+                    <li>📸 Todo lo del Plan Express</li>
+                    <li>🛒 Carrito de compras interactivo</li>
+                    <li>📲 Pedidos directos por WhatsApp</li>
+                    <li>💳 Pagos integrados (Yape, Plin, efectivo)</li>
+                    <li>🚀 Ideal para delivery</li>
+                </ul>
+                <div class="button-group">
+                    <a href="https://goo.su/4AQmQ" target="_blank" class="btn-demo demo-restaurante">👀 Ver Demo Pro</a>
+                    <button class="btn-primary acquire-plan" data-item="Carta Digital Pro" data-price="199.90">Adquirir Carta Pro 🎉</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carrito Modal -->
+        <div class="modal" id="cart-modal">
+            <div class="modal-content">
+                <span class="modal-close" id="cart-close">×</span>
+                <!-- Paso 1: Revisar Carrito -->
+                <div class="step active" id="cart-step-1">
+                    <h2 class="text-lg font-bold text-[var(--primary)] mb-2">🛒 Tu Carrito</h2>
+                    <p class="text-sm mb-2">¡Aprovecha el descuento por promoción! 💥 Revisa y paga 🎉</p>
+                    <div id="cart-content" class="text-sm"></div>
+                    <p class="promo-text mb-2 text-sm">Total: <span id="cart-total">S/ 0</span> 💸</p>
+                    <div class="step-navigation">
+                        <button class="btn-primary" id="next-to-cart-step-2">Continuar al Pago 💳</button>
+                    </div>
+                </div>
+                <!-- Paso 2: QR de Pago -->
+                <div class="step" id="cart-step-2">
+                    <h2 class="text-lg font-bold text-[var(--primary)] mb-2">💸 Paga Ahora</h2>
+                    <p class="text-sm mb-2">¡Ahorra con la promoción! 💸 Clic en el QR, paga y envía el comprobante 📲</p>
+                    <div style="text-align: center;">
+                        <a href="qr-pago.jpg" download="QR_Pago_Carta_Digital.jpg">
+                            <img src="qr-pago.jpg" alt="QR de Pago" class="qr-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <p class="qr-fallback" style="display: none;">No se pudo cargar el QR. Contáctanos en WhatsApp.</p>
+                        </a>
+                    </div>
+                    <div class="step-navigation">
+                        <button class="btn-back" id="back-to-cart-step-1">⬅️ Atrás</button>
+                        <button class="btn-primary" id="checkout-whatsapp">Finalizar en WhatsApp 📲</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat FAQ Modal -->
+        <div class="modal" id="chat-modal">
+            <div class="chat-modal-content">
+                <span class="modal-close" id="chat-close">×</span>
+                <div class="chat-header">
+                    <i class="fas fa-user-circle fa-2x"></i>
+                    <div>
+                        <div>Manguito 😊</div>
+                        <div class="chat-status" id="chat-status">En línea</div>
+                    </div>
+                </div>
+                <div class="chat-body" id="chat-body">
+                    <div class="chat-bubble bot">¡Hola! 😎 Soy Manguito, tu asistente de Carta Digital. ¿Cómo te ayudo hoy?</div>
+                    <div class="chat-options" id="chat-options">
+                        <div class="chat-option" data-question="1">¿Qué es Carta Digital? 🌟</div>
+                        <div class="chat-option" data-question="2">¿Cuáles son los beneficios? 😎</div>
+                        <div class="chat-option" data-question="3">¿Cómo empiezo? 🚀</div>
+                        <div class="chat-option" data-question="4">¿Puedo personalizar? 🎨</div>
+                        <div class="chat-option" data-question="5">¿Qué métodos de pago? 💸</div>
+                        <div class="chat-option" data-question="6">¿Actualizar catálogo? 🔄</div>
+                        <div class="chat-option" data-question="7">¿Problemas técnicos? 🛠️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="animate-fade-in">
+            © 2025 Manguito Publicidad 😊
+        </footer>
+    </div>
+
+    <!-- Chat Flotante y Burbuja -->
+    <div class="chat-bubble-float" id="chat-bubble-float">¡Estoy aquí para ayudarte! 😊</div>
+    <button class="chat-float" id="open-chat">
+        <i class="fas fa-comment fa-2x"></i>
+    </button>
+
+    <!-- Sonido de Mensaje -->
+    <audio id="message-sound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_2f4a3b97b8.mp3" preload="auto"></audio>
+
+    <script>
+        let cart = [];
+        let questionCount = 0;
+        let answeredQuestions = [];
+        const faqQuestions = {
+            1: "¿Qué es Carta Digital? 🌟",
+            2: "¿Cuáles son los beneficios? 😎",
+            3: "¿Cómo empiezo? 🚀",
+            4: "¿Puedo personalizar? 🎨",
+            5: "¿Qué métodos de pago? 💸",
+            6: "¿Actualizar catálogo? 🔄",
+            7: "¿Problemas técnicos? 🛠️"
+        };
+
+        const faqAnswers = {
+            1: "Carta Digital transforma tu menú en un link, QR y app 📱 con fotos, precios, reservas y más, ¡listo en 48h! 🚀 ¿Digitalizamos tu restaurante? ¡Adquírelo ya! 🎉",
+            2: "Carta Digital simplifica tu restaurante: menú digital, reservas, pedidos por WhatsApp, pagos integrados. Express a S/99.90 y Pro a S/199.90 (promoción). 😊 ¡Adquírelo ya! 🚀",
+            3: "Paga tu plan (Express S/99.90 o Pro S/199.90), envía el comprobante, comparte los detalles de tu restaurante por WhatsApp 📲, ¡y en 48h tienes tu carta digital! 😊 ¡Adquírelo ya! 🎉",
+            4: "¡Sí! Personalizamos colores, logo y diseño a tu marca 🌟. ¿Quieres una Carta Digital única? ¡Adquírelo ya! 🎨",
+            5: "Paga tu plan (Express S/99.90 o Pro S/199.90) por Yape o Plin, escanea el QR, envía el comprobante a nuestro WhatsApp 📲. ¡Listo en 48h! 🤑",
+            6: "Tu primera actualización es gratis, luego cuesta S/50 📋. Envía los cambios por WhatsApp, ¡y actualizamos tu carta! 😊 ¡Adquírelo ya! 🚀",
+            7: "Resolvemos problemas con link, QR o app rápido 😎. ¿Listo para Carta Digital? ¡Adquírelo ya! 🚀"
+        };
+
+        // Acordeón
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.toggle-icon');
+                content.classList.toggle('active');
+                icon.classList.toggle('active');
+            });
+        });
+
+        // Carrito
+        function updateCart() {
+            const cartContent = document.getElementById('cart-content');
+            const cartTotal = document.getElementById('cart-total');
+
+            if (cart.length === 0) {
+                cartContent.innerHTML = '<p class="cart-empty">¡Carrito vacío! 😢</p>';
+                cartTotal.textContent = 'S/ 0';
+            } else {
+                let total = 0;
+                let html = `
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Ítem</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+                cart.forEach(item => {
+                    html += `
+                        <tr>
+                            <td>${item.name}</td>
+                            <td>S/ ${item.price}</td>
+                        </tr>
+                    `;
+                    total += item.price;
+                });
+                html += '</tbody></table>';
+                cartContent.innerHTML = html;
+                cartTotal.textContent = `S/ ${total.toFixed(2)}`;
+            }
+        }
+
+        function handleAcquirePlan(button) {
+            const itemName = button.getAttribute('data-item');
+            const itemPrice = parseFloat(button.getAttribute('data-price'));
+
+            if (!cart.some(item => item.name === itemName)) {
+                cart.push({ name: itemName, price: itemPrice });
+                updateCart();
+            }
+
+            const chatModal = document.getElementById('chat-modal');
+            if (chatModal.style.display === 'flex') {
+                chatModal.style.opacity = 0;
+                setTimeout(() => chatModal.style.display = 'none', 300);
+            }
+
+            const cartModal = document.getElementById('cart-modal');
+            cartModal.style.display = 'flex';
+            cartModal.style.opacity = 0;
+            setTimeout(() => cartModal.style.opacity = 1, 10);
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById('cart-step-1').classList.add('active');
+        }
+
+        document.querySelectorAll('.acquire-plan').forEach(button => {
+            button.addEventListener('click', () => handleAcquirePlan(button));
+        });
+
+        document.getElementById('cart-close').addEventListener('click', () => {
+            const modal = document.getElementById('cart-modal');
+            modal.style.opacity = 0;
+            setTimeout(() => modal.style.display = 'none', 300);
+        });
+
+        document.getElementById('cart-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                e.currentTarget.style.opacity = 0;
+                setTimeout(() => e.currentTarget.style.display = 'none', 300);
+            }
+        });
+
+        document.getElementById('next-to-cart-step-2').addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('¡Carrito vacío! 😢 Agrega algo primero.');
+                return;
+            }
+            document.getElementById('cart-step-1').classList.remove('active');
+            document.getElementById('cart-step-2').classList.add('active');
+        });
+
+        document.getElementById('back-to-cart-step-1').addEventListener('click', () => {
+            document.getElementById('cart-step-2').classList.remove('active');
+            document.getElementById('cart-step-1').classList.add('active');
+        });
+
+        document.getElementById('checkout-whatsapp').addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('¡Carrito vacío! 😢 Agrega algo primero.');
+                return;
+            }
+
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            let message = `¡Hola Manguito Publicidad! 👋\n\n` +
+                         `*Solicitud Carta Digital:*\n` +
+                         cart.map(item => `- ${item.name}: S/ ${item.price}`).join('\n') + `\n` +
+                         `*Total: S/ ${total.toFixed(2)}*\n` +
+                         `Ya pagué. Adjunto comprobante. ¡Gracias! 😊`;
+
+            window.open(`https://wa.me/51961360935?text=${encodeURIComponent(message)}`, '_blank');
+            const modal = document.getElementById('cart-modal');
+            modal.style.opacity = 0;
+            setTimeout(() => modal.style.display = 'none', 300);
+            cart = [];
+            updateCart();
+        });
+
+        // Chat FAQ
+        document.getElementById('open-chat').addEventListener('click', () => {
+            const modal = document.getElementById('chat-modal');
+            modal.style.display = 'flex';
+            modal.style.opacity = 0;
+            setTimeout(() => modal.style.opacity = 1, 10);
+            resetChat();
+        });
+
+        document.getElementById('chat-close').addEventListener('click', () => {
+            const modal = document.getElementById('chat-modal');
+            modal.style.opacity = 0;
+            setTimeout(() => modal.style.display = 'none', 300);
+        });
+
+        document.getElementById('chat-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                e.currentTarget.style.opacity = 0;
+                setTimeout(() => e.currentTarget.style.display = 'none', 300);
+            }
+        });
+
+        function showTypingIndicator() {
+            const chatBody = document.getElementById('chat-body');
+            chatBody.innerHTML += `
+                <div class="typing-indicator" id="typing">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            anime({
+                targets: '.typing-dot',
+                scale: [1, 1.2],
+                opacity: [0.5, 1],
+                duration: 300,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                loop: true,
+                delay: anime.stagger(100)
+            });
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        }
+
+        function resetChat() {
+            questionCount = 0;
+            const chatBody = document.getElementById('chat-body');
+            const remainingQuestions = Object.keys(faqQuestions).filter(id => !answeredQuestions.includes(id));
+            
+            if (remainingQuestions.length === 0) {
+                chatBody.innerHTML = `
+                    <div class="chat-bubble bot">¡No tienes excusa! 😎 Es hora de digitalizar tu restaurante con Carta Digital. 💼 ¡Adquírelo ahora! 🎉</div>
+                    <div class="chat-options">
+                        <div class="chat-option acquire-plan" data-item="Carta Digital Express" data-price="99.90">Adquirir Express 🚀</div>
+                        <div class="chat-option acquire-plan" data-item="Carta Digital Pro" data-price="199.90">Adquirir Pro 🚀</div>
+                    </div>
+                `;
+                document.getElementById('chat-status').textContent = 'En línea';
+                addChatOptionListeners();
+                animateBubbles();
+                return;
+            }
+
+            let optionsHTML = '<div class="chat-options" id="chat-options">';
+            remainingQuestions.forEach(id => {
+                optionsHTML += `<div class="chat-option" data-question="${id}">${faqQuestions[id]}</div>`;
+            });
+            optionsHTML += '</div>';
+
+            chatBody.innerHTML = `
+                <div class="chat-bubble bot">¡Hola! 😎 Soy tu asistente de Carta Digital. ¿Cómo te ayudo hoy?</div>
+                ${optionsHTML}
+            `;
+            document.getElementById('chat-status').textContent = 'En línea';
+            addChatOptionListeners();
+            animateBubbles();
+        }
+
+        function animateBubbles() {
+            anime({
+                targets: '.chat-bubble',
+                opacity: [0, 1],
+                translateY: [10, 0],
+                duration: 300,
+                easing: 'easeOutQuad',
+                delay: anime.stagger(100)
+            });
+        }
+
+        function addChatOptionListeners() {
+            document.querySelectorAll('.chat-option').forEach(option => {
+                if (option.classList.contains('acquire-plan')) {
+                    option.addEventListener('click', () => handleAcquirePlan(option));
+                } else if (option.hasAttribute('data-question')) {
+                    option.addEventListener('click', () => {
+                        const questionId = option.getAttribute('data-question');
+                        const questionText = option.textContent;
+                        const answerText = faqAnswers[questionId];
+
+                        if (!answeredQuestions.includes(questionId)) {
+                            answeredQuestions.push(questionId);
+                        }
+
+                        const chatBody = document.getElementById('chat-body');
+                        chatBody.querySelector('.chat-options').remove();
+
+                        chatBody.innerHTML += `<div class="chat-bubble user">${questionText}</div>`;
+                        document.getElementById('chat-status').textContent = 'Escribiendo...';
+                        showTypingIndicator();
+
+                        setTimeout(() => {
+                            removeTypingIndicator();
+                            chatBody.innerHTML += `<div class="chat-bubble bot">${answerText}</div>`;
+                            questionCount++;
+
+                            const remainingQuestions = Object.keys(faqQuestions).filter(id => !answeredQuestions.includes(id));
+
+                            let optionsHTML = '';
+                            if (remainingQuestions.length > 0) {
+                                optionsHTML = `
+                                    <div class="chat-options">
+                                        <div class="chat-option acquire-plan" data-item="Carta Digital Express" data-price="99.90">Adquirir Express 🎉</div>
+                                        <div class="chat-option acquire-plan" data-item="Carta Digital Pro" data-price="199.90">Adquirir Pro 🎉</div>
+                                        <div class="chat-option" onclick="resetChat()">Otra pregunta ❓</div>
+                                    </div>
+                                `;
+                                if (questionCount >= 2) {
+                                    chatBody.innerHTML += `
+                                        <div class="chat-bubble bot">¡Carta Digital es ideal para tu restaurante! 💼 Compra ahora con descuento por promoción 😊</div>
+                                    `;
+                                }
+                            } else {
+                                optionsHTML = `
+                                    <div class="chat-bubble bot">¡No tienes excusa! 😎 Es hora de digitalizar tu restaurante con Carta Digital. 💼 ¡Adquírelo ahora! 🎉</div>
+                                    <div class="chat-options">
+                                        <div class="chat-option acquire-plan" data-item="Carta Digital Express" data-price="99.90">Adquirir Express 🚀</div>
+                                        <div class="chat-option acquire-plan" data-item="Carta Digital Pro" data-price="199.90">Adquirir Pro 🚀</div>
+                                    </div>
+                                `;
+                            }
+
+                            chatBody.innerHTML += optionsHTML;
+                            document.getElementById('chat-status').textContent = 'En línea';
+                            animateBubbles();
+                            addChatOptionListeners();
+                            chatBody.scrollTop = chatBody.scrollHeight;
+
+                            if (!/Mobi|Android/i.test(navigator.userAgent)) {
+                                const sound = document.getElementById('message-sound');
+                                sound.play().catch(() => {});
+                            }
+                        }, 300);
+                    });
+                }
+            });
+        }
+
+        // Animación de Burbuja Flotante
+        anime({
+            targets: '#chat-bubble-float',
+            scale: [1, 1.05],
+            opacity: [0.8, 1],
+            duration: 1000,
+            easing: 'easeInOutQuad',
+            direction: 'alternate',
+            loop: true
+        });
+
+        addChatOptionListeners();
+    </script>
+</body>
+</html>
